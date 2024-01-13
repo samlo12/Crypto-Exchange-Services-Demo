@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My-Crypto</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                font: normal 16px sans-serif;
+            }
+
+            section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 50px 70px;
+            }
+
+            section h2 {
+                font-size: 50px;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+
+            section p {
+                max-width: 900px;
+                font-size: 20px;
+                line-height: 2;
+                padding: 0 20px;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+
+            b {
+                color: #5978aa;
+            }
+
+            p {
+                color: #555;
+            }
+
+            /* navbar */
+            #navbar {
+                z-index: 1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                background-color: #0b3159;
+                color: #fff;
+                padding: 20px 20px 20px 40px;
+                box-shadow: 1px 0px 1px 1px #80a3db;
+                margin: 0;
+                border-radius: 2px;
+            }
+
+            #navbar p {
+                font-size: 32px;
+            }
+
+            nav a {
+                margin-right: 20px;
+            }
+
+            nav {
+                margin-left: auto;
+            }
+
+            a {
+                text-decoration: none;
+                opacity: 0.8;
+                color: #fff;
+            }
+
+            a:hover {
+                opacity: 1;
+            }
+
+            /* home */
+            #home {
+                position: relative;
+                justify-content: center;
+                text-align: center;
+                min-height: 100vh;
+                color: #fff;
+                margin: 0;
+            }
+
+            #home .background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                z-index: -1;
+                background-color: #80a3db;
+            }
+
+            #home h1 {
+                font-size: 55px;
+                margin-bottom: 25px;
+            }
+
+            #home h3 {
+                font-size: 40px;
+                margin-bottom: 50px;
+            }
+
+            #home .content {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+
+            #home a {
+                display: inline-block;
+                width: 300px;
+                align-self: center;
+                font-size: 30px;
+                padding: 10px 20px;
+                background-color: #80a3db;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 15px;
+            }
+
+            /* introduction */
+            #introduction img {
+                background-color: white;
+                object-fit: cover;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+            }
+
+            /* What are the characteristics of Cryptocurrency? */
+            #characteristics {
+                background-color: #f5f5f5;
+            }
+            #characteristics-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #characteristics .characteristics-item {
+                padding: 50px;
+                text-align: center;
+                display: inline-block;
+                flex-basis: 50%;
+            }
+
+            #characteristics img {
+                border: #80a3db 5px solid;
+                background-color: inherit;
+                object-fit: cover;
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+            }
+
+            #characteristics #cryptocurrencies-list-img {
+                border: #80a3db 2px solid;
+                object-fit: fill;
+                width: 450px;
+                height: 200px;
+                border-radius: 10px;
+            }
+
+            #characteristics h3 {
+                font-size: 30px;
+                margin: 25px 0;
+            }
+
+            /* Trading Services of Cryptocurrency */
+            #services {
+                background-color: none;
+            }
+
+            #services-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #services .services-item {
+                align-items: center;
+                padding: 50px;
+                text-align: left;
+                display: flex;
+                width: 78%;
+            }
+
+            .services-item p {
+                text-align: left;
+            }
+
+            .services-text-content {
+                margin-left: 12px;
+            }
+
+            #services img {
+                border: #80a3db 5px solid;
+                background-color: inherit;
+                object-fit: cover;
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+            }
+
+            #services h3 {
+                font-size: 30px;
+                margin: 25px 12px;
+            }
+
+            #register-msg {
+                font-size: 30px;
+            }
+
+            #register-msg a {
+                text-decoration: underline;
+                color: #5978aa;
+            }
+
+            /* form */
+            #register h2 {
+                font-size: 35px;
+            }
+
+            #register {
+                background-color: #f5f5f5;
+                display: flex;
+            }
+
+            #register form {
+                max-width: 900px;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+            }
+
+            #register form div {
+                margin: 10px 10px;
+                flex-grow: 1;
+            }
+
+            #register form .user-info {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            input,
+            select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+            .account-info h4 {
+                margin: 10px 0px 20px 10px;
+                font-size: 20px;
+            }
+
+            .form-btn {
+                display: flex;
+            }
+
+            .form-btn input {
+                margin: 10px 1px;
+                padding: 15px 20px;
+                background-color: #4c6c9f;
+                opacity: 0.9;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 18px;
+            }
+
+            input[type="submit"]:hover,
+            input[type="reset"]:hover {
+                opacity: 1;
+            }
+
+            /* footer  */
+
+            footer {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: #0b3159;
+                padding: 20px 40px;
+                box-shadow: 1px 0px 1px 1px #80a3db;
+            }
+
+            footer p {
+                color: #fff;
+                opacity: 0.9;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- navbar -->
+        <header id="navbar">
+            <p><a href="#home">My-Crypto</a></p>
+            <nav>
+                <a href="#introduction">Cryptocurrency</a>
+                <a href="#">Contact Us</a>
+                <a href="#register">Register</a>
+            </nav>
+        </header>
+
+        <!-- section 1 -->
+        <div id="home">
+            <div
+                class="background"
+                style="background-image: url(image/background.jpg)"
+            ></div>
+            <div class="content">
+                <h1>My-Crypto</h1>
+                <h3>Professional Crypto Exchange Services (ECS)</h3>
+                <a href="#register">Register Now</a>
+            </div>
+        </div>
+
+        <!-- introding the characteristics of Cryptocurrency -->
+        <section id="introduction">
+            <h2>What is Cryptocurrency?</h2>
+            <img src="image/cryptocurrency.png" alt="cryptocurrency" />
+            <p>
+                Cryptocurrency is a
+                <b>digital or virtual form of currency</b> that utilizes
+                cryptography for secure financial transactions, control the
+                creation of additional units, and verify asset transfers.
+            </p>
+            <p>
+                Unlike traditional currencies, cryptocurrencies are
+                <b>decentralized</b>. They operate on a distributed ledger -
+                “blockchain”. This nature eliminates the need for intermediaries
+                including banks and governments. It provides users with better
+                control over their financial transactions.
+            </p>
+        </section>
+
+        <!-- describe the characteristics of Cryptocurrency -->
+        <section id="characteristics">
+            <h2>What are the characteristics of Cryptocurrency?</h2>
+            <p>
+                Cryptocurrency has special characteristics and it offers a
+                variety of benefits, including
+                <b>Financial Inclusion</b>, <b>Transparency</b>,
+                <b>Security and Privacy</b> and <b>Borderless Transactions</b>.
+            </p>
+            <div id="characteristics-list">
+                <div class="characteristics-item">
+                    <img
+                        src="image/financial_Inclusion.png"
+                        alt="image of Financial Inclusion"
+                    />
+                    <h3>Financial Inclusion</h3>
+                    <p>
+                        Cryptocurrencies can bring financial services to both
+                        the
+                        <b>unbanked and underbanked populations globally</b>.
+                        With any digital device available for internet access,
+                        people can engage in the global economy and access
+                        various financial services without traditional banking
+                        systems.
+                    </p>
+                </div>
+                <div class="characteristics-item">
+                    <img
+                        src="image/Transparency.png"
+                        alt="image of Transparency"
+                    />
+                    <h3>Transparency</h3>
+                    <p>
+                        The blockchain technology, which is behind
+                        cryptocurrencies, enables
+                        <b>transparent transaction</b> by allowing anyone to
+                        view transaction information and history. It build trust
+                        and responsibility in the ecosystem of cryptocurrency.
+                    </p>
+                </div>
+
+                <div class="characteristics-item">
+                    <img
+                        src="image/Security_and_Privacy.png"
+                        alt="image of Security and Privacy"
+                    />
+                    <h3>Security and Privacy</h3>
+                    <p>
+                        Cryptocurrencies use advanced
+                        <b>cryptographic techniques</b>
+                        to secure transactions, making them difficult for fraud
+                        and hacking. Users also protect their personal
+                        information and privacy by controlling the level of
+                        information disclosure in their transactions.
+                    </p>
+                </div>
+                <div class="characteristics-item">
+                    <img
+                        src="image/Borderless_Transactions.jpg"
+                        alt="image of Borderless Transactions"
+                    />
+                    <h3>Borderless Transactions</h3>
+                    <p>
+                        Traditional financial systems present physical barriers
+                        and delays in cross-border transactions.
+                        Cryptocurrencies enable fast and instant transfers
+                        <b>across international boundaries</b>. Therefore, it
+                        can eliminate the need for intermediaries, producing a
+                        lower cost.
+                    </p>
+                </div>
+                <div class="characteristics-item">
+                    <img
+                        id="cryptocurrencies-list-img"
+                        src="image/Cryptocurrencies.jpeg"
+                        alt="image of exmple of Cryptocurrencies"
+                    />
+                    <h3>Examples of Cryptocurrencies:</h3>
+
+                    <p>
+                        Stellar (XLM), Cardano (ADA), Chainlink (LINK), Polkadot
+                        (DOT), Litecoin (LTC), Bitcoin Cash (BCH) and EOS (EOS)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- describe the Trading Services of Cryptocurrency -->
+        <section id="services">
+            <h2>Trading Services of Cryptocurrency</h2>
+            <p>
+                <b>Buying, selling and exchanging</b> of digital assets are
+                involved in trading cryptocurrencies. It enables people to
+                speculate on their profit movements from market fluctuations.
+                Key aspects of
+                <b>cryptocurrency trading services</b>
+                include the following:
+            </p>
+            <div id="services-list">
+                <div class="services-item">
+                    <img
+                        src="image/Cryptocurrency_Exchanges.jpg"
+                        alt="image of Cryptocurrency Exchanges"
+                    />
+                    <div class="services-text-content">
+                        <h3>Cryptocurrency Exchanges</h3>
+                        <p>
+                            There are online platforms that allow
+                            <b>buying and selling</b> various cryptocurrencies.
+                            Exchanges perform as <b>intermediaries</b> that help
+                            match buyer and seller, while a fully secure
+                            environment for transactions is provided. For
+                            example, Coinbase, Binance, and Kraken are the
+                            well-known cryptocurrency exchanges.
+                        </p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <img
+                        src="image/Trading_Pairs.jpg"
+                        alt="image of Trading Pairs"
+                    />
+                    <div class="services-text-content">
+                        <h3>Trading Pairs</h3>
+                        <p>
+                            Trading Pairs is involved in cryptocurrency trading.
+                            It is the <b>exchange rate</b> between different
+                            cryptocurrencies or between a cryptocurrency and a
+                            fiat currency, such as ETH/BTC or BTC/USD.
+                        </p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <img
+                        src="image/Spot_Trading.png"
+                        alt="image of Spot Trading"
+                    />
+                    <div class="services-text-content">
+                        <h3>Spot Trading</h3>
+                        <p>
+                            Spot trading is a common form of cryptocurrency
+                            trading. It represent the concept of buying or
+                            selling cryptocurrencies at the current
+                            <b>market price</b> for <b>immediate settlement</b>.
+                            It also means that there is
+                            <b>direct exchange</b> of one specific
+                            cryptocurrency to another or to a fiat currency.
+                        </p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <img
+                        src="image/Margin_Trading.png"
+                        alt="image of Margin Trading"
+                    />
+                    <div class="services-text-content">
+                        <h3>Margin Trading</h3>
+                        <p>
+                            Margin trading allow traders to borrow funding from
+                            a cryptocurrency exchange in order to larger their
+                            trading positions. Therefore, traders can trade with
+                            more than they possess. It can lead to
+                            <b>increased potential profits</b>, but it also
+                            <b>amplifies potential losses</b>. Traders should
+                            consider their risk tolerance before engaging in
+                            margin trading.
+                        </p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <img
+                        src="image/Futures_and_Derivatives.png"
+                        alt="image of Futures and Derivatives"
+                    />
+                    <div class="services-text-content">
+                        <h3>Futures and Derivatives</h3>
+                        <p>
+                            Cryptocurrency futures and derivatives agreements
+                            enable traders to speculate on cryptocurrency prices
+                            <b>without actually possessing the assets</b>. These
+                            contracts may possess pre-established termination or
+                            expiration dates. They also provide chances for
+                            gains in both rising and falling markets.
+                        </p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <img
+                        src="image/DEX.jpg"
+                        alt="image of Decentralized Exchanges (DEX)"
+                    />
+                    <div class="services-text-content">
+                        <h3>Decentralized Exchanges (DEX)</h3>
+                        <p>
+                            Decentralized Exchanges (DEX) is operated on
+                            <b>decentralized networks</b> as a type of
+                            cryptocurrency exchange. It typically makes use of
+                            smart contracts. It removes the necessary of
+                            intermediaries, enabling the
+                            <b>direct exchange</b> and trading for traders. As a
+                            result, there are increased privacy and control over
+                            funds, while there may be lower liquidity compared
+                            to centralized exchanges.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p id="register-msg">
+                Starting Your Cryptocurrency Trading Journey?
+                <a href="#register"><b>Register Now</b></a>
+            </p>
+        </section>
+        <!-- end of section 1 -->
+
+        <!-- section 2 -->
+        <section id="register">
+            <h2>Join Us Now</h2>
+            <form action="form_action.php" method="POST">
+                <input
+                    type="hidden"
+                    name="value"
+                    value="Crypto Exchange Services"
+                />
+                <div class="user-info">
+                    <div>
+                        <label for="salute">Salutation:</label>
+                        <select name="salute" id="salute">
+                            <option value="Dr">Dr</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Ms">Ms</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="firstname">Your First Name:</label>
+                        <input type="text" name="firstname" id="firstname" />
+                    </div>
+                    <div>
+                        <label for="lastname">Your Last Name:</label>
+                        <input type="text" name="lastname" id="lastname" />
+                    </div>
+                    <div>
+                        <label for="dob">Your Date of Birth:</label>
+                        <input type="date" name="dob" id="dob" />
+                    </div>
+                    <div>
+                        <label for="phoneno">Your Contact Phone No: </label>
+                        <input
+                            type="tel"
+                            name="phoneno"
+                            id="phoneno"
+                            placeholder="########"
+                            pattern="\d{8}"
+                        />
+                    </div>
+                    <div>
+                        <label for="emailadd">Your Email Address:</label>
+                        <input
+                            type="email"
+                            name="emailadd"
+                            id="emailadd"
+                            placeholder="name@domain.com"
+                        />
+                    </div>
+                </div>
+
+                <div class="account-info">
+                    <h4>
+                        Set Your username and password for login as follows:
+                    </h4>
+                    <div>
+                        <label for="userName">Username:</label>
+                        <input
+                            type="text"
+                            name="userName"
+                            id="userName"
+                            maxlength="12"
+                        />
+                    </div>
+                    <div>
+                        <label for="userPass">Password:</label>
+                        <input
+                            type="password"
+                            name="userPass"
+                            id="userPass"
+                            maxlength="8"
+                        />
+                    </div>
+                    <div class="form-btn">
+                        <input type="submit" value="Register" />
+                        <input type="reset" value="Clear" />
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- end of section 2 -->
+
+        <!-- footer -->
+        <footer>
+            <p>My-Crypto © 2023</p>
+            <p>Professional Crypto Exchange Services (ECS)</p>
+        </footer>
+    </body>
+</html>
